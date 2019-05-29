@@ -9,9 +9,6 @@ public class MyFirstProgram {
       hello("Daria");
 
 
-
-
-
       Square s = new Square(5);
       System.out.println("Square of a square with side " + s.l + "= " + s.area());
 
@@ -20,11 +17,11 @@ public class MyFirstProgram {
       System.out.println(Math.sqrt(16));
 
 
-      Point p1 = new Point();
+      Point p1 = new Point(2,3);
       p1.x = 2;
       p1.y = 3;
 
-      Point p2 = new Point();
+      Point p2 = new Point(5,7);
       p2.x = 5;
       p2.y = 7;
 
