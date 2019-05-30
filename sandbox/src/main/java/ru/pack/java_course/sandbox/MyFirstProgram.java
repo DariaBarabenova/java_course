@@ -22,7 +22,6 @@ public class MyFirstProgram {
       Point p2 = new Point(5,7);
 
 
-
       distance(p1,p2);
 
     System.out.println("Distance from Object: "+ p1.pointDistance(p2));
