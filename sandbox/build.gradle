@@ -1,8 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'application'
- HEAD
 mainClassName = "ru.pack.java_course.sandbox.MyFirstProgram"
 
+repositories {
+    mavenCentral()
+}
 
-mainClassName = "ru.stqa.java_course.sandbox.MyFirstProgram"
- c1c9e58a1d5027fa32e6f4436b152fbfc3578777 
+dependencies {
+    implementation 'com.slickqa:testng:7.0.0-7'
+}
