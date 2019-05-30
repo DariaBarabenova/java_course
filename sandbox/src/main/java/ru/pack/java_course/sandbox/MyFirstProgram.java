@@ -18,12 +18,9 @@ public class MyFirstProgram {
 
 
       Point p1 = new Point(2,3);
-      p1.x = 2;
-      p1.y = 3;
 
       Point p2 = new Point(5,7);
-      p2.x = 5;
-      p2.y = 7;
+
 
 
       distance(p1,p2);
