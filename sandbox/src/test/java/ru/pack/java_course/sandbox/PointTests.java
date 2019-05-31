@@ -5,10 +5,18 @@ import org.testng.annotations.Test;
 
 public class PointTests {
   @Test
-  public void testDistance () {
-    Point p1 = new Point (2,3);
-    Point p2 = new Point(5,7);
-    Assert.assertEquals(p1.pointDistance(p2),5);
+  public void testDistance() {
+    Point p1 = new Point(2, 3);
+    Point p2 = new Point(5, 7);
+    Assert.assertEquals(p1.pointDistance(p2), 5);
   }
 
+  public class PointTest1 {
+    @Test
+    public void testDistance() {
+      Point p1 = new Point(2, 3);
+      Point p2 = new Point(5, 7);
+      assert p1.pointDistance(p2) == 5;
+    }
+  }
 }
