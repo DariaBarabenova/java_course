@@ -31,6 +31,7 @@ public class TestContactCreation {
     goToNewContactPage();
     fillNewContactForm(new ContactData("Name", "Lastname", "Title", "Company", "1111111", "testemail@test.com"));
     submitNewContactCreation();
+    wd.findElement(By.linkText("home page")).click();
     wd.findElement(By.linkText("Logout")).click();
   }
 
