@@ -27,4 +27,20 @@ public class ContactHelper extends HelperBase {
   public void goToNewContactPage() {
     wd.findElement(By.linkText("add new")).click();
   }
+
+  public void selectContact() {
+    click(By.name("selected[]"));
+  }
+
+  public void deleteContact() {
+    click(By.xpath("//input[@value='Delete']"));
+  }
+
+  public void editContact() {
+    click (By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void submitContactModification() {
+    click (By.xpath("(//input[@name='update'])[2]"));
+  }
 }
