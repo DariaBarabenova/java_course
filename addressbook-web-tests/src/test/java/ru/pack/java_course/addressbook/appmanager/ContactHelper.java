@@ -52,4 +52,14 @@ public class ContactHelper extends HelperBase {
   public void submitContactModification() {
     click (By.xpath("(//input[@name='update'])[2]"));
   }
+
+  public void createContact(ContactData contact, boolean b) {
+    goToNewContactPage();
+    fillNewContactForm(new ContactData("Name", "Lastname", "Title", "Company", "1111111", "testemail@test.com", "test1"), true);
+    submitNewContactCreation();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
+  }
 }
