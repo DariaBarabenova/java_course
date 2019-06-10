@@ -1,7 +1,10 @@
 package ru.pack.java_course.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.pack.java_course.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
@@ -15,13 +18,19 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.name("submit")).click();
   }
 
-  public void fillNewContactForm(ContactData contactData) {
+  public void fillNewContactForm(ContactData contactData, boolean creation) {
     type (By.name("firstname"),contactData.getNcName());
     type (By.name("lastname"),contactData.getNcLastname());
     type (By.name("title"),contactData.getNcTitle());
     type (By.name("company"),contactData.getNcCompany());
     type (By.name("home"),contactData.getNcHomeTelephone());
     type (By.name("email"), contactData.getNcEmail());
+
+    if (creation){
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    }else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
   }
 
   public void goToNewContactPage() {
