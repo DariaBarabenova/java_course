@@ -3,7 +3,11 @@ package ru.pack.java_course.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private final String id;
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  private int id;
   private final String ncName;
   private final String ncLastname;
   private final String ncTitle;
@@ -44,11 +48,11 @@ public class ContactData {
             '}';
   }
 
-  public String getId() {
+  public int getId() {
     return id;
   }
 
-  public ContactData(String id, String ncName, String ncLastname, String ncTitle, String ncCompany, String ncHomeTelephone, String ncEmail, String group) {
+  public ContactData(int id, String ncName, String ncLastname, String ncTitle, String ncCompany, String ncHomeTelephone, String ncEmail, String group) {
     this.id = id;
     this.ncName = ncName;
     this.ncLastname = ncLastname;

@@ -57,9 +57,9 @@ public class ContactHelper extends HelperBase {
     click (By.xpath("(//input[@name='update'])[2]"));
   }
 
-  public void createContact(ContactData contact, boolean b) {
+  public void createContact(ContactData contact) {
     goToNewContactPage();
-    fillNewContactForm(new ContactData(null,"Name", "Lastname", "Title", "Company", "1111111", "testemail@test.com", "test1"), true);
+    fillNewContactForm(new ContactData(0,"Name", "Lastname", "Title", "Company", "1111111", "testemail@test.com", "test1"), true);
     submitNewContactCreation();
   }
 
@@ -77,7 +77,7 @@ public class ContactHelper extends HelperBase {
     for (WebElement element : elements){
       String name = element.getText();
       String id = element.findElement (By.tagName("input")).getAttribute("value");
-      ContactData contact = new ContactData (null,"Name", "Lastname", "Title", "Company", "1111111", "testemail@test.com", "test1");
+      ContactData contact = new ContactData (0,"Name", "Lastname", "Title", "Company", "1111111", "testemail@test.com", "test1");
       contacts.add(contact);
     }
     return contacts;
