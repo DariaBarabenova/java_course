@@ -50,7 +50,7 @@ public class GroupHelper extends HelperBase {
 
   public void createGroup(GroupData group) {
     initGroupCreation();
-    fillGroupForm(new GroupData("test1", null, null));
+    fillGroupForm(new GroupData(null,"test1", null, null));
     submitGroupCreation();
     returnToGroupPage();
   }
@@ -68,7 +68,8 @@ public class GroupHelper extends HelperBase {
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element: elements){
       String name = element.getText();
-      GroupData group = new GroupData (name, null, null);
+      String id = element.findElement (By.tagName("input")).getAttribute("value");
+      GroupData group = new GroupData (null, name, null, null);
       groups.add(group);
     }
     return groups;
