@@ -13,20 +13,6 @@ public class GroupData {
   private final String footer;
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    GroupData groupData = (GroupData) o;
-    return Objects.equals(id, groupData.id) &&
-            Objects.equals(name, groupData.name);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, name);
-  }
-
-  @Override
   public String toString() {
     return "GroupData{" +
             "id='" + id + '\'' +
@@ -40,12 +26,11 @@ public class GroupData {
 
 
   public GroupData(int id, String name, String header, String footer) {
-    this.id = id;
+    this.id = Integer.MAX_VALUE;
     this.name = name;
     this.header = header;
     this.footer = footer;
   }
-
 
   public String getName() {
     return name;
@@ -59,4 +44,19 @@ public class GroupData {
     return footer;
   }
 
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GroupData groupData = (GroupData) o;
+    return Objects.equals(name, groupData.name) &&
+            Objects.equals(header, groupData.header) &&
+            Objects.equals(footer, groupData.footer);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, header, footer);
+  }
 }
