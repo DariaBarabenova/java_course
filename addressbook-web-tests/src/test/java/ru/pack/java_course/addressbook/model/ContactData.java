@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class ContactData {
   public void setId(int id) {
-    this.id = id;
   }
 
   private int id;
@@ -79,15 +78,11 @@ public class ContactData {
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
     return Objects.equals(ncName, that.ncName) &&
-            Objects.equals(ncLastname, that.ncLastname) &&
-            Objects.equals(ncTitle, that.ncTitle) &&
-            Objects.equals(ncCompany, that.ncCompany) &&
-            Objects.equals(ncHomeTelephone, that.ncHomeTelephone) &&
-            Objects.equals(ncEmail, that.ncEmail);
+            Objects.equals(ncLastname, that.ncLastname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ncName, ncLastname, ncTitle, ncCompany, ncHomeTelephone, ncEmail);
+    return Objects.hash(ncName, ncLastname);
   }
 }
