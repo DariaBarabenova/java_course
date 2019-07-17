@@ -3,16 +3,54 @@ package ru.pack.java_course.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  public void setId(int id) {
+
+  public ContactData withId(int id) {
+    this.id=id;
+    return this;
   }
 
-  private int id;
-  private final String ncName;
-  private final String ncLastname;
-  private final String ncTitle;
-  private final String ncCompany;
-  private final String ncHomeTelephone;
-  private final String ncEmail;
+  public ContactData withNcName(String ncName) {
+    this.ncName = ncName;
+    return this;
+  }
+
+  public ContactData withNcLastname(String ncLastname) {
+    this.ncLastname = ncLastname;
+    return this;
+  }
+
+  public ContactData withNcTitle(String ncTitle) {
+    this.ncTitle = ncTitle;
+    return this;
+  }
+
+  public ContactData withNcCompany(String ncCompany) {
+    this.ncCompany = ncCompany;
+    return this;
+  }
+
+  public ContactData withNcHomeTelephone(String ncHomeTelephone) {
+    this.ncHomeTelephone = ncHomeTelephone;
+    return this;
+  }
+
+  public ContactData withNcEmail(String ncEmail) {
+    this.ncEmail = ncEmail;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  private int id = Integer.MAX_VALUE;;
+  private String ncName;
+  private String ncLastname;
+  private String ncTitle;
+  private String ncCompany;
+  private String ncHomeTelephone;
+  private String ncEmail;
   private String group;
 
   @Override
@@ -30,18 +68,6 @@ public class ContactData {
 
   public int getId() {
     return id;
-  }
-
-
-  public ContactData(int id, String ncName, String ncLastname, String ncTitle, String ncCompany, String ncHomeTelephone, String ncEmail, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.ncName = ncName;
-    this.ncLastname = ncLastname;
-    this.ncTitle = ncTitle;
-    this.ncCompany = ncCompany;
-    this.ncHomeTelephone = ncHomeTelephone;
-    this.ncEmail = ncEmail;
-    this.group = group;
   }
 
   public String getNcName() {

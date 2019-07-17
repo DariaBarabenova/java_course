@@ -59,7 +59,9 @@ public class ContactHelper extends HelperBase {
 
   public void create(ContactData contact) {
     goToNewContactPage();
-    fillNewContactForm(new ContactData(0,"Name", "Lastname", "Title", "Company", "1111111", "testemail@test.com", "test1"), true);
+    fillNewContactForm(new ContactData()
+            .withId(0).withNcName("Name").withNcLastname("Lastname").withNcTitle("Title").withNcCompany("Company")
+            .withNcHomeTelephone("1111111").withNcEmail("testemail@test.com").withGroup("test1"), true);
     submitNewContactCreation();
   }
 
@@ -89,7 +91,8 @@ public class ContactHelper extends HelperBase {
       String id = element.findElement (By.tagName("input")).getAttribute("value");
       WebElement ncName = element.findElement (By.xpath("//td[3]"));
       WebElement ncLastname = element.findElement (By.xpath("//td[2]"));
-      ContactData contact = new ContactData (0,"Name", "Lastname", null, null, null, null, null);
+      ContactData contact = new ContactData()
+              .withId(0).withNcName("Name").withNcLastname("Lastname");
       contacts.add(contact);
     }
     return contacts;
