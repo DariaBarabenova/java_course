@@ -65,6 +65,7 @@ public class ContactHelper extends HelperBase {
             .withId(0).withNcName("Name").withNcLastname("Lastname").withNcTitle("Title").withNcCompany("Company")
             .withNcHomeTelephone("1111111").withNcEmail("testemail@test.com").withGroup("test1"), true);
     submitNewContactCreation();
+    contactCache = null;
   }
 
   public void modify(ContactData contact) {
@@ -72,11 +73,13 @@ public class ContactHelper extends HelperBase {
     editContact();
     fillNewContactForm((contact), false);
     submitContactModification();
+    contactCache = null;
   }
 
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteContact();
+    contactCache = null;
   }
 
   public boolean isThereAContact() {
@@ -87,17 +90,22 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("entry")).size();
   }
 
+  private Contacts contactCache = null;
+
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null){
+      return new Contacts(contactCache);
+    }
+    contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
     for (WebElement element : elements){
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       WebElement ncName = element.findElement (By.xpath(".//td[3]"));
       WebElement ncLastname = element.findElement (By.xpath(".//td[2]"));
       ContactData contact = new ContactData().withId(id).withNcName("Name").withNcLastname("Lastname");
-      contacts.add(contact);
+      contactCache.add(contact);
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 
 }
