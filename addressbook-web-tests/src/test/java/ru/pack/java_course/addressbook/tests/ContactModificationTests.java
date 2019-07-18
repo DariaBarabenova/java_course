@@ -38,8 +38,8 @@ public class ContactModificationTests extends TestBase {
             .withNcHomeTelephone("1111111").withNcEmail("testemail@test.com").withGroup("test1");
     app.contact().modify(contact);
     app.goTo().homePage();
+    assertThat(app.contact().count(),equalTo(before.size()));
     Contacts after = app.contact().all();
-    assertEquals(after.size(),before.size());
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
 

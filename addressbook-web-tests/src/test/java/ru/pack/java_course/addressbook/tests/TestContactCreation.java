@@ -20,10 +20,11 @@ public class TestContactCreation extends TestBase{
             .withNcHomeTelephone("1111111").withNcEmail("testemail@test.com").withGroup("test1");
     app.contact().create(contact);
     app.goToHomePage();
+    assertThat(app.contact().count(),equalTo(before.size() + 1));
     Contacts after = app.contact().all();
-    assertEquals(after.size(),before.size() + 1);
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c)-> c.getId()).max().getAsInt()))));
+
   }
 
 
