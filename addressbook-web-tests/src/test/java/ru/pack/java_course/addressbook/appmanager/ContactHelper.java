@@ -1,7 +1,6 @@
 package ru.pack.java_course.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -88,11 +87,10 @@ public class ContactHelper extends HelperBase {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
     for (WebElement element : elements){
-      String id = element.findElement (By.tagName("input")).getAttribute("value");
-      WebElement ncName = element.findElement (By.xpath("//td[3]"));
-      WebElement ncLastname = element.findElement (By.xpath("//td[2]"));
-      ContactData contact = new ContactData()
-              .withId(0).withNcName("Name").withNcLastname("Lastname");
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      WebElement ncName = element.findElement (By.xpath(".//td[3]"));
+      WebElement ncLastname = element.findElement (By.xpath(".//td[2]"));
+      ContactData contact = new ContactData().withId(id).withNcName("Name").withNcLastname("Lastname");
       contacts.add(contact);
     }
     return contacts;
