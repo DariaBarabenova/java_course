@@ -8,7 +8,9 @@ import org.testng.Assert;
 import ru.pack.java_course.addressbook.model.ContactData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -40,8 +42,8 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.linkText("add new")).click();
   }
 
-  public void selectContact(int index) {
-    wd.findElements (By.name("selected[]")).get(index).click();
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   public void deleteContact() {
@@ -65,13 +67,14 @@ public class ContactHelper extends HelperBase {
   }
 
   public void modify(ContactData contact) {
+    selectContactById(contact.getId());
     editContact();
     fillNewContactForm((contact), false);
     submitContactModification();
   }
 
-  public void delete(int index) {
-    selectContact(index);
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteContact();
   }
 
@@ -83,8 +86,8 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("entry")).size();
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
     for (WebElement element : elements){
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
@@ -95,4 +98,5 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
+
 }
