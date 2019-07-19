@@ -24,7 +24,8 @@ public class ContactModificationTests extends TestBase {
     if (app.contact().all().size() == 0){
       app.contact().create(new ContactData()
               .withId(0).withNcName("Name").withNcLastname("Lastname").withNcTitle("Title").withNcCompany("Company")
-              .withNcHomeTelephone("1111111").withNcEmail("testemail@test.com").withGroup("test1"));
+              .withNcHomeTelephone("1111111").withNcMobilePhone("2222222").withNcWorkPhone("3333333")
+              .withNcEmail("testemail@test.com").withGroup("test1"));
     }
   }
 

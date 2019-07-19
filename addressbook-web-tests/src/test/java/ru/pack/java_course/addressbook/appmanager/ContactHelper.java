@@ -8,10 +8,7 @@ import org.testng.Assert;
 import ru.pack.java_course.addressbook.model.ContactData;
 import ru.pack.java_course.addressbook.model.Contacts;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -102,11 +99,32 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       WebElement ncName = element.findElement (By.xpath(".//td[3]"));
       WebElement ncLastname = element.findElement (By.xpath(".//td[2]"));
+
       ContactData contact = new ContactData().withId(id).withNcName("Name").withNcLastname("Lastname");
       contactCache.add(contact);
+      String allPhones = element.findElement(By.xpath(".//td[5]")).getText();
+      String[] phones = allPhones.split("\n");
+      contactCache.add(new ContactData().withId(id).withNcName("Name").withNcLastname("Lastname").withNcHomeTelephone(phones[0])
+              .withNcMobilePhone(phones[1]).withNcWorkPhone(phones[2]));
     }
     return new Contacts(contactCache);
   }
 
 
+  public ContactData InfoFromEditForm(ContactData contact) {
+    initContactModificationById(contact.getId());
+    String NcName = wd.findElement(By.name("Name")).getAttribute("value");
+    String NcLastname = wd.findElement(By.name("Lastname")).getAttribute("value");
+    String NcHomeTelephone = wd.findElement(By.name("HomeTelephone")).getAttribute("value");
+    String NcMobilePhone = wd.findElement(By.name("MobilePhone")).getAttribute("value");
+    String NcWorkPhone = wd.findElement(By.name("WorkPhone")).getAttribute("value");
+    wd.navigate().back();
+    return new ContactData().withId(contact.getId()).withNcName("Name").withNcLastname("Lastname").withNcHomeTelephone("HomeTelephone")
+            .withNcMobilePhone("MobilePhone").withNcWorkPhone("WorkPhone");
+
+  }
+
+  private void initContactModificationById(int id) {
+    wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a",id))).click();
+  }
 }

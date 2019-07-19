@@ -4,24 +4,36 @@ import java.util.Objects;
 
 public class ContactData {
 
-  public ContactData withId(int id) {
-    this.id=id;
-    return this;
-  }
+  private int id = Integer.MAX_VALUE;;
+  private String ncName;
+  private String ncLastname;
+  private String ncTitle;
+  private String ncCompany;
+  private String ncHomeTelephone;
+  private String ncMobilePhone;
+  private String ncWorkPhone;
+  private String ncEmail;
+  private String group;
+  private String allPhones;
 
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return id == that.id &&
-            Objects.equals(ncName, that.ncName) &&
+    return Objects.equals(ncName, that.ncName) &&
             Objects.equals(ncLastname, that.ncLastname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, ncName, ncLastname);
+    return Objects.hash(ncName, ncLastname);
+  }
+
+
+  public ContactData withId(int id) {
+    this.id=id;
+    return this;
   }
 
   public ContactData withNcName(String ncName) {
@@ -59,14 +71,20 @@ public class ContactData {
     return this;
   }
 
-  private int id = Integer.MAX_VALUE;;
-  private String ncName;
-  private String ncLastname;
-  private String ncTitle;
-  private String ncCompany;
-  private String ncHomeTelephone;
-  private String ncEmail;
-  private String group;
+  public ContactData withNcMobilePhone(String ncMobilePhone) {
+    this.ncMobilePhone = ncMobilePhone;
+    return this;
+  }
+
+  public ContactData withNcWorkPhone(String ncWorkPhone) {
+    this.ncWorkPhone = ncWorkPhone;
+    return this;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
 
   @Override
   public String toString() {
@@ -77,7 +95,10 @@ public class ContactData {
             ", ncTitle='" + ncTitle + '\'' +
             ", ncCompany='" + ncCompany + '\'' +
             ", ncHomeTelephone='" + ncHomeTelephone + '\'' +
+            ", ncMobilePhone='" + ncMobilePhone + '\'' +
+            ", ncWorkPhone='" + ncWorkPhone + '\'' +
             ", ncEmail='" + ncEmail + '\'' +
+            ", allPhones='" + allPhones + '\'' +
             '}';
   }
 
@@ -103,6 +124,7 @@ public class ContactData {
 
   public String getNcHomeTelephone() {
     return ncHomeTelephone;
+
   }
 
   public String getNcEmail() {
@@ -111,6 +133,14 @@ public class ContactData {
 
   public String getGroup() {
     return group;
+  }
+
+  public Object getNcWorkPhone() {
+    return ncWorkPhone;
+  }
+
+  public String getNcMobilePhone() {
+    return ncMobilePhone;
   }
 
 }
