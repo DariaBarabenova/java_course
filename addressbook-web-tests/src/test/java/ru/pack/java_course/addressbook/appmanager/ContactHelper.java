@@ -108,4 +108,7 @@ public class ContactHelper extends HelperBase {
     return new Contacts(contactCache);
   }
 
+  public ContactData InfoFromEditFrom(ContactData contact) {
+    
+  }
 }
