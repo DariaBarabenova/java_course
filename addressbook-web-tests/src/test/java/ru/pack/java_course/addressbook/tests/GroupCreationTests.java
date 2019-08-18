@@ -22,7 +22,7 @@ public class GroupCreationTests extends TestBase{
   }
 
 
-  @Test
+  @Test (enabled = false)
   public void testBadGroupCreation() {
     app.goTo().groupPage();
     Groups before = app.group().all();
