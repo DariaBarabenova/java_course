@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 import ru.pack.java_course.addressbook.model.ContactData;
 import ru.pack.java_course.addressbook.model.Contacts;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -39,16 +41,30 @@ public class ContactModificationTests extends TestBase {
     Date date =new Date();
     String datetime = String.valueOf(date.getTime());
     System.out.println(datetime);
+    String datetime2 = String.valueOf(LocalDate.now());
+    System.out.println(datetime2);
+    String datetime3 = String.valueOf(LocalDateTime.now());
+    System.out.println(datetime3);
+    String newEmailAddress = (datetime3+"@test.com");
+    System.out.println(newEmailAddress);
     ContactData contact = new ContactData()
-            .withId(modifiedContact.getId()).withNcName("Name").withNcLastname("Lastname").withNcTitle("Title").withNcCompany("Company2")
-            .withNcHomeTelephone(datetime).withNcEmail("testemail@test.com").withGroup("test1");
+            .withId(modifiedContact.getId()).withNcName("Name").withNcLastname("Lastname").withNcTitle(datetime2).withNcCompany("Company2")
+            .withNcHomeTelephone(datetime).withNcEmail(newEmailAddress).withGroup("test1");
     app.contact().modify(contact);
     app.goTo().homePage();
     assertThat(app.contact().count(),equalTo(before.size()));
     Contacts after = app.contact().all();
     Thread.sleep(2000);
     String allPhones = app.wd.findElements(By.cssSelector("tr[name='entry']")).get(0).findElement(By.xpath(".//td[6]")).getText();
-    Assert.assertTrue(allPhones.contains(datetime),"Contains no datetime");
+    String eMailOfTheContact = app.wd.findElements(By.cssSelector("tr[name='entry']")).get(0).findElement(By.xpath(".//td[5]")).getText();
+    //Assert.assertTrue(allPhones.contains(datetime),"Contains no datetime");
+    System.out.println(allPhones);
+    assertEquals(allPhones.substring(0,13), datetime, "Values of the first telephone are not equal");
+    assertEquals(eMailOfTheContact, newEmailAddress, "Values of email addresses are not equal");
+    //String titleValue = app.wd.findElements(By.cssSelector("//img[@alt='Edit']").click().;
+    
+
+
   }
 
 }
